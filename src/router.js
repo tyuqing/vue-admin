@@ -23,3 +23,9 @@ export default new Router({
     },
   ],
 });
+/**
+ * TODO重置路由
+ */
+export function resetRouter() {
+
+}
