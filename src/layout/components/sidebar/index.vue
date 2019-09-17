@@ -29,7 +29,11 @@ export default {
       permissionRoutes: state => state.permission.routes,
     }),
     activeMenu() {
-      return this.$route.name;
+      const { name, meta } = this.$route;
+      if (meta.activeMenu) {
+        return meta.activeMenu;
+      }
+      return name;
     },
     menuList() {
       return this.getMenuList();

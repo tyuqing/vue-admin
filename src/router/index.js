@@ -21,7 +21,7 @@ export const constantRoutes = [
         name: 'dashboard',
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: '首页', icon: 'ios-apps' },
+        meta: { title: '首页' },
       },
     ],
   },
