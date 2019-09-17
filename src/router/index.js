@@ -7,6 +7,7 @@ Vue.use(Router);
 
 export const constantRoutes = [
   {
+    name: 'login',
     path: '/login',
     component: () => import('@/views/login/index.vue'),
     hidden: true,
@@ -17,10 +18,10 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [
       {
+        name: 'dashboard',
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        name: 'dashboard',
-        meta: { title: '首页' },
+        meta: { title: '首页', icon: 'ios-apps' },
       },
     ],
   },

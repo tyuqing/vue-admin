@@ -1,14 +1,14 @@
 <template>
   <div class="menu-wrapper">
-    <i-sub-menu v-if="item.children && item.children.length" ref="subMenu" :name="item.route">
+    <Submenu v-if="item.children && item.children.length" ref="subMenu" :name="item.name">
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
-      <sidebar-item v-for="child in item.children" :key="child.route" :item="child" />
-    </i-sub-menu>
+      <SidebarItem v-for="child in item.children" :key="child.path" :item="child" />
+    </Submenu>
     <template v-else>
-      <router-link class="menu-a" v-if="item.meta" :to="{ name: item.route }">
-        <menu-item :name="item.route">
+      <router-link class="menu-a" v-if="item.meta" :to="{ name: item.name }">
+        <menu-item :name="item.name">
           <item :icon-type="item.meta.icon" :title="item.meta.title" />
         </menu-item>
       </router-link>

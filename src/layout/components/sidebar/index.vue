@@ -3,16 +3,16 @@
     <logo></logo>
     <div>
       <i-menu ref="menu" class="side-bar-menu" theme="light" :active-name="activeMenu" width="auto">
-        <sidebar-item v-for="route in MENU_LIST" :key="route.route" :item="route" />
+        <sidebar-item v-for="route in menuList" :key="route.path" :item="route" />
       </i-menu>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Logo from './logo.vue';
 import SidebarItem from './sidebar-item.vue';
-import MENU_LIST from './sidebar.config';
 
 export default {
   components: {
@@ -22,18 +22,39 @@ export default {
   props: {},
   data() {
     return {
-      MENU_LIST,
     };
   },
   computed: {
+    ...mapState({
+      permissionRoutes: state => state.permission.routes,
+    }),
     activeMenu() {
       return this.$route.name;
+    },
+    menuList() {
+      return this.getMenuList();
     },
   },
   watch: {},
   created() {},
   mounted() {},
   methods: {
+    getMenuList() {
+      const menuList = [];
+      this.permissionRoutes.forEach((element) => {
+        if (element.name && !element.hidden) {
+          const newElement = {
+            ...element,
+            children: (element.children || []).filter(item => !item.hidden),
+          };
+          menuList.push(newElement);
+        } else {
+          const children = (element.children || []).filter(item => !item.hidden);
+          menuList.push(...children);
+        }
+      });
+      return menuList;
+    },
   },
 };
 </script>
