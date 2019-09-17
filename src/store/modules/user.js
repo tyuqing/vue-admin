@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/user';
-import router, { resetRouter } from '@/router';
+import router, { resetRouter } from '@/router/index';
 
 const states = {
   token: '',
