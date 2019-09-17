@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/user';
-import router, { resetRouter } from '@/router/index';
+import { resetRouter } from '@/router/index';
 
 const states = {
   token: '',
@@ -50,35 +50,31 @@ const actions = {
 
   // get user info
   getInfo({ commit }) {
-    return new Promise((resolve, reject) => {
-      getInfo()
-        .then((response) => {
-          const { data } = response;
+    return getInfo()
+      .then((response) => {
+        const { data } = response;
 
-          if (!data) {
-            reject(new Error('验证失败，请重新登录'));
-          }
+        if (!data) {
+          return Promise.reject(new Error('验证失败，请重新登录'));
+        }
 
-          const {
-            role, name, avatar, phone, email,
-          } = data;
+        const {
+          role, name, avatar, phone, email,
+        } = data;
 
-          // role must be a non-empty string
-          if (!role) {
-            reject(new Error('获取用户信息：用户必须分配角色'));
-          }
+        // role must be a non-empty string
+        if (!role) {
+          return Promise.reject(new Error('获取用户信息：用户必须分配角色'));
+        }
 
-          commit('SET_ROLE', role);
-          commit('SET_NAME', name);
-          commit('SET_AVATAR', avatar);
-          commit('SET_PHONE', phone);
-          commit('SET_EMAIL', email);
-          resolve(data);
-        })
-        .catch((error) => {
-          reject(new Error(error));
-        });
-    });
+        commit('SET_ROLE', role);
+        commit('SET_NAME', name);
+        commit('SET_AVATAR', avatar);
+        commit('SET_PHONE', phone);
+        commit('SET_EMAIL', email);
+        return data;
+      })
+      .catch(error => Promise.reject(error));
   },
 
   // user logout
@@ -97,38 +93,6 @@ const actions = {
     });
   },
 
-  // remove token
-  resetToken({ commit }) {
-    return new Promise((resolve) => {
-      commit('SET_TOKEN', '');
-      commit('SET_ROLE', '');
-      resolve();
-    });
-  },
-
-  // dynamically modify permissions
-  changeRole({ commit, dispatch }, newRole) {
-    return new Promise(async (resolve) => {
-      const token = `${newRole}-token`;
-
-      commit('SET_TOKEN', token);
-
-      const { role } = await dispatch('getInfo');
-
-      resetRouter();
-
-      // generate accessible routes map based on role
-      const accessRoutes = await dispatch('permission/generateRoutes', role, { root: true });
-
-      // dynamically add accessible routes
-      router.addRoutes(accessRoutes);
-
-      // reset visited views and cached views
-      dispatch('tagsView/delAllViews', null, { root: true });
-
-      resolve();
-    });
-  },
 };
 
 export default {
