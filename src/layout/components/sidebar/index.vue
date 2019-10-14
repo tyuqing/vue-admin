@@ -2,7 +2,7 @@
   <div class="sidebar-container">
     <logo></logo>
     <div>
-      <i-menu ref="menu" class="side-bar-menu" theme="light" :active-name="activeMenu" width="auto">
+      <i-menu ref="menu" class="side-bar-menu" theme="dark" :active-name="activeMenu" width="auto">
         <sidebar-item v-for="route in menuList" :key="route.path" :item="route" />
       </i-menu>
     </div>

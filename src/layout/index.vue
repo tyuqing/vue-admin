@@ -32,7 +32,7 @@ export default {
 <style lang="scss" scoped>
 @import '~@/styles/layout.scss';
 .g-left {
-  background: #fefefe;
+  background: #515a6e;
 }
 .g-app-main {
   background-color: #f5f6fa;

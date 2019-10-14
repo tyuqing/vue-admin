@@ -47,7 +47,7 @@ export default {
       margin: 0 0 0 12px;
       font-weight: 400;
       font-size: 16px;
-      color: #002140;
+      color: #fff;
       text-align: left;
       vertical-align: middle !important;
       p {

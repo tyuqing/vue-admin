@@ -1,5 +1,5 @@
 <template>
-  <div class="article-container">
+  <div class="m-container m-view--list">
     <div>
       <Button type="primary" @click="showAddArticle">创建文章</Button>
     </div>
