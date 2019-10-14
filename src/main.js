@@ -6,6 +6,7 @@ import store from './store/index';
 import 'iview/dist/styles/iview.css';
 /* the global css */
 import '@/styles/func.css';
+import '@/styles/common.scss';
 
 import './permission';
 
