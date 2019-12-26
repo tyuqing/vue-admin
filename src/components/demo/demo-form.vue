@@ -1,8 +1,8 @@
 <template>
   <div>
     <i-form ref="form" :model="formData" :label-width="90" :rules="rules">
-      <FormItem label="文章名:" prop="name">
-        <i-input v-model="formData.name" placeholder="请输入文章名" />
+      <FormItem label="示例名:" prop="name">
+        <i-input v-model="formData.name" placeholder="请输入示例名" />
       </FormItem>
     </i-form>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 // 接口
-import { addArticle, updateArticle } from '@/api/article';
+import { addDemo, updateDemo } from '@/api/demo';
 /**
  * 初始化表单
  */
@@ -42,7 +42,7 @@ export default {
       /* 模块列表 */
       moduleList: [],
       rules: {
-        name: [{ required: true, message: '文章名', trigger: 'blur' }],
+        name: [{ required: true, message: '示例名', trigger: 'blur' }],
       },
       priorityList: [],
     };
@@ -70,7 +70,7 @@ export default {
     submitForm() {
       if (this.formType === 'add') {
         // 新增
-        return addArticle({
+        return addDemo({
           name: this.formData.name,
         }).then((response) => {
           this.$Message.success('创建成功');
@@ -78,7 +78,7 @@ export default {
         });
       }
       // 更新
-      return updateArticle({
+      return updateDemo({
         id: this.formData.id,
         name: this.formData.name,
       }).then((response) => {

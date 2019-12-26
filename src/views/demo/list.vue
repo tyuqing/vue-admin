@@ -1,15 +1,15 @@
 <template>
   <div class="m-container m-view--list">
-    <div>
-      <Button type="primary" @click="showAddArticle">创建文章</Button>
+    <div style="border-bottom: 1px solid #e8e8e8; padding: 10px;">
+      <Button type="primary" @click="showAddDemo">创建示例</Button>
     </div>
     <div>
       <i-table
         class="no-outside-border"
         stripe
-        :columns="articleColumns"
-        :data="articleList"
-        no-data-text="暂无数据，请先创建文章"
+        :columns="demoColumns"
+        :data="demoList"
+        no-data-text="暂无数据，请先创建示例"
       />
     </div>
     <!--分页-->
@@ -24,38 +24,38 @@
         show-total
       ></Page>
     </div>
-    <!--新建文章-->
+    <!--新建示例-->
     <Modal
-      ref="articleModal"
-      v-model="modal.article"
-      :title="modal.articleType === 'add' ? '新建文章' : '编辑文章'"
+      ref="demoModal"
+      v-model="modal.demo"
+      :title="modal.demoType === 'add' ? '新建示例' : '编辑示例'"
       :mask-closable="false"
       loading
       transfer
       @on-ok="submitForm"
     >
-      <ArticleForm
-        ref="articleForm"
-        v-if="modal.article"
-        :data="currentArticle"
-        :formType="modal.articleType"
-      ></ArticleForm>
+      <DemoForm
+        ref="demoForm"
+        v-if="modal.demo"
+        :data="currentDemo"
+        :formType="modal.demoType"
+      ></DemoForm>
     </Modal>
   </div>
 </template>
 
 <script>
 /* 接口 */
-import { getArticleList, deleteArticle } from '@/api/article';
+import { getDemoList, deleteDemo } from '@/api/demo';
 
 export default {
   components: {
-    ArticleForm: () => import('@/components/article/article-form.vue'),
+    DemoForm: () => import('@/components/demo/demo-form.vue'),
   },
   props: {},
   data() {
     return {
-      articleList: [],
+      demoList: [],
       /* 过滤 */
       filter: {
         keyword: '',
@@ -67,18 +67,18 @@ export default {
         total: 0,
       },
       modal: {
-        article: false,
-        articleType: 'add',
+        demo: false,
+        demoType: 'add',
       },
-      currentArticle: {},
+      currentDemo: {},
       // 表格结构
-      articleColumns: [
+      demoColumns: [
         {
           type: 'index',
           width: 50,
         },
         {
-          title: '文章名',
+          title: '示例名',
           key: 'name',
         },
         {
@@ -90,7 +90,7 @@ export default {
                 <span
                   class="clickable"
                   onClick={() => {
-                    this.showEditArticle(row);
+                    this.showEditDemo(row);
                   }}
                 >
                   编辑
@@ -98,7 +98,7 @@ export default {
                 <span
                   class="clickable--error"
                   onClick={() => {
-                    this.confirmDeleteArticle(row.id);
+                    this.confirmDeleteDemo(row.id);
                   }}
                 >
                   删除
@@ -112,21 +112,21 @@ export default {
   computed: {},
   watch: {},
   created() {
-    this.getArticleList();
+    this.getDemoList();
   },
   mounted() {},
   methods: {
     /**
-     * 获取文章列表
+     * 获取示例列表
      */
-    getArticleList() {
-      getArticleList({
+    getDemoList() {
+      getDemoList({
         projectId: this.$projectId,
         keyword: this.filter.keyword,
         page: this.pageInfo.page,
         pageSize: this.pageInfo.pageSize,
       }).then((response) => {
-        this.articleList = response.data.items || [];
+        this.demoList = response.data.items || [];
         // 更新分页信息
         this.pageInfo.total = response.data.pageInfo.total;
         this.pageInfo.page = response.data.pageInfo.page;
@@ -138,51 +138,51 @@ export default {
      */
     onPageChange(page) {
       this.pageInfo.page = page;
-      this.getArticleList();
+      this.getDemoList();
     },
     /**
      * 搜索
      */
     onSearch() {
       this.pageInfo.page = 1;
-      this.getArticleList();
+      this.getDemoList();
     },
     /**
      * 显示新建弹框
      */
-    showAddArticle() {
-      this.modal.articleType = 'add';
-      this.modal.article = true;
+    showAddDemo() {
+      this.modal.demoType = 'add';
+      this.modal.demo = true;
     },
     /**
      * 显示编辑弹框
      */
-    showEditArticle(data) {
-      this.currentArticle = data;
-      this.modal.articleType = 'edit';
-      this.modal.article = true;
+    showEditDemo(data) {
+      this.currentDemo = data;
+      this.modal.demoType = 'edit';
+      this.modal.demo = true;
     },
     /**
      * 删除二次确认弹框
      */
-    confirmDeleteArticle(id) {
+    confirmDeleteDemo(id) {
       this.$Modal.confirm({
         title: '删除',
-        content: '确定删除此文章吗？',
+        content: '确定删除此示例吗？',
         okType: 'error',
         onOk: () => {
-          this.deleteArticle(id);
+          this.deleteDemo(id);
         },
       });
     },
     /**
      * 删除
      */
-    deleteArticle(id) {
-      deleteArticle({
+    deleteDemo(id) {
+      deleteDemo({
         id,
       }).then(() => {
-        this.getArticleList();
+        this.getDemoList();
         this.$Message.success('删除成功');
       });
     },
@@ -191,23 +191,23 @@ export default {
      */
     async submitForm() {
       /* 模态框 */
-      const { articleModal } = this.$refs;
+      const { demoModal } = this.$refs;
       /* 表单 */
-      const { articleForm } = this.$refs;
+      const { demoForm } = this.$refs;
       /* 校验表单 */
-      if (!(await articleForm.validateForm())) {
-        articleModal.buttonLoading = false;
+      if (!(await demoForm.validateForm())) {
+        demoModal.buttonLoading = false;
         return;
       }
-      articleForm
+      demoForm
         .submitForm()
         .then(() => {
           // 返回结果处理
-          this.modal.article = false;
-          this.getArticleList();
+          this.modal.demo = false;
+          this.getDemoList();
         })
         .catch(() => {
-          articleModal.buttonLoading = false;
+          demoModal.buttonLoading = false;
         });
     },
   },

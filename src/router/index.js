@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '@/layout/index.vue';
-import articleRouter from './modules/article';
+import demoRouter from './modules/demo';
 
 Vue.use(Router);
 
@@ -27,7 +27,7 @@ export const constantRoutes = [
   },
 ];
 export const asyncRoutes = [
-  articleRouter,
+  demoRouter,
 ];
 export default new Router({
   routes: constantRoutes,

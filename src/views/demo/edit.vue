@@ -1,5 +1,5 @@
 <template>
-  <div>文章编辑</div>
+  <div>示例编辑</div>
 </template>
 
 <script>
