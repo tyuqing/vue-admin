@@ -1,6 +1,7 @@
 const { mocker } = require('http-mockjs');
 
 module.exports = {
+  assetsDir: 'static',
   css: {
     loaderOptions: {
       sass: {

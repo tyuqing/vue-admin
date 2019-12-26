@@ -1,12 +1,12 @@
 <template>
   <div class="g-wrap">
-    <sidebar class="g-left" />
+    <Sidebar class="g-left" />
     <div class="g-right">
       <div class="g-right_top">
-        <navbar />
+        <Navbar />
       </div>
         <section class="g-app-main">
-            <router-view />
+          <router-view />
         </section>
     </div>
   </div>
@@ -17,14 +17,9 @@ import { Navbar, Sidebar } from './components/index';
 
 export default {
   name: 'Layout',
-  components: {
-    Navbar,
-    Sidebar,
-  },
-  computed: {
-  },
-  methods: {
-  },
+  components: { Navbar, Sidebar },
+  computed: {},
+  methods: {},
 };
 </script>
 

@@ -15,7 +15,7 @@ const demoRouter = {
       meta: { title: '示例列表', breadcrumb: false },
     },
     {
-      path: 'edit/:demoId',
+      path: 'edit/:id',
       component: () => import('@/views/demo/edit.vue'),
       name: 'demo-edit',
       meta: { title: '示例编辑', activeMenu: 'demo-list', roles: ['admin', 'editor'] },
