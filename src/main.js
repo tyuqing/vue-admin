@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import iview from 'iview';
-import App from './App.vue';
+import App from './app.vue';
 import router from './router/index';
 import store from './store/index';
 import 'iview/dist/styles/iview.css';
@@ -17,5 +17,5 @@ Vue.use(iview);
 new Vue({
   router,
   store,
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount('#app');
