@@ -1,4 +1,4 @@
-import { LoadingBar } from 'iview';
+import { LoadingBar } from 'view-design';
 import router from '@/router/index';
 import store from '@/store/index';
 

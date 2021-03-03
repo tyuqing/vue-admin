@@ -1,5 +1,5 @@
 import * as axiosInstance from 'axios';
-import { Message, Modal } from 'iview';
+import { Message, Modal } from 'view-design';
 
 const request = axiosInstance.create({
   // 统一设置超时时间
