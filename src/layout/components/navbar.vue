@@ -38,7 +38,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('user/logout').then(() => {
-        // TODO the next of logout
+        this.$Message.success('注销成功');
       });
     },
   },
