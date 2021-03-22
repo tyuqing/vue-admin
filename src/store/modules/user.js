@@ -74,7 +74,7 @@ const actions = {
         commit('SET_EMAIL', email);
         return data;
       })
-      .catch(error => Promise.reject(error));
+      .catch((error) => Promise.reject(error));
   },
 
   // user logout

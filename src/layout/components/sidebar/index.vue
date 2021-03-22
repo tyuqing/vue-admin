@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapState({
-      permissionRoutes: state => state.permission.routes,
+      permissionRoutes: (state) => state.permission.routes,
     }),
     activeMenu() {
       const { name, meta } = this.$route;
@@ -49,11 +49,11 @@ export default {
         if (element.name && !element.hidden) {
           const newElement = {
             ...element,
-            children: (element.children || []).filter(item => !item.hidden),
+            children: (element.children || []).filter((item) => !item.hidden),
           };
           menuList.push(newElement);
         } else {
-          const children = (element.children || []).filter(item => !item.hidden);
+          const children = (element.children || []).filter((item) => !item.hidden);
           menuList.push(...children);
         }
       });

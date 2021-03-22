@@ -39,7 +39,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --mode production",
       "git add"
     ]
   }
