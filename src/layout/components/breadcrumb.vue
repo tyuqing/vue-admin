@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 export default {
   components: {},
   props: {},
@@ -43,7 +42,7 @@ export default {
       }
 
       this.levelList = matched.filter(
-        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false,
+        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
       );
     },
     isDashboard(route) {
@@ -58,5 +57,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

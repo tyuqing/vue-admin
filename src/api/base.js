@@ -21,7 +21,8 @@ request.interceptors.response.use(
     if (res.code === 200) {
       // 正确时的处理
       return res;
-    } if (/^(401)$/.test(res.code)) {
+    }
+    if (/^(401)$/.test(res.code)) {
       // 未登录的处理
     } else if (/^(11[0-9]{2})$/.test(res.code)) {
       // Message方式的提示
@@ -38,6 +39,6 @@ request.interceptors.response.use(
       Message.error(error.message);
     }
     return Promise.reject(error);
-  },
+  }
 );
 export default request;

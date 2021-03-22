@@ -10,8 +10,7 @@
 <script>
 export default {
   name: 'SidebarLogo',
-  props: {
-  },
+  props: {},
   data() {
     return {};
   },
@@ -56,6 +55,5 @@ export default {
       }
     }
   }
-
 }
 </style>

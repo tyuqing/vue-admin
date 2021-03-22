@@ -26,15 +26,11 @@ export const constantRoutes = [
     ],
   },
 ];
-export const asyncRoutes = [
-  demoRouter,
-];
+export const asyncRoutes = [demoRouter];
 export default new Router({
   routes: constantRoutes,
 });
 /**
  * TODO重置路由
  */
-export function resetRouter() {
-
-}
+export function resetRouter() {}

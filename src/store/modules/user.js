@@ -58,9 +58,7 @@ const actions = {
           return Promise.reject(new Error('验证失败，请重新登录'));
         }
 
-        const {
-          role, name, avatar, phone, email,
-        } = data;
+        const { role, name, avatar, phone, email } = data;
 
         // role must be a non-empty string
         if (!role) {
@@ -92,7 +90,6 @@ const actions = {
         });
     });
   },
-
 };
 
 export default {

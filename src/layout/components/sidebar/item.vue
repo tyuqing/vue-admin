@@ -1,12 +1,11 @@
 <template>
-  <div >
-      <icon v-if="iconType || iconCustom" class="menu-icon" :type="iconType" :custom="iconCustom" />
-      <span class="menu-title">{{ title }}</span>
-    </div>
+  <div>
+    <icon v-if="iconType || iconCustom" class="menu-icon" :type="iconType" :custom="iconCustom" />
+    <span class="menu-title">{{ title }}</span>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: 'MenuItem',
   props: {
@@ -23,8 +22,7 @@ export default {
       default: '',
     },
   },
-  computed: {
-  },
+  computed: {},
 };
 </script>
 <style scope lang="scss">

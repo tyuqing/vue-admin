@@ -5,9 +5,9 @@
       <div class="g-right_top">
         <Navbar />
       </div>
-        <section class="g-app-main">
-          <router-view />
-        </section>
+      <section class="g-app-main">
+        <router-view />
+      </section>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="m-container m-view--list">
-    <div style="border-bottom: 1px solid #e8e8e8; padding: 10px;">
+    <div style="border-bottom: 1px solid #e8e8e8; padding: 10px">
       <Button type="primary" @click="showAddDemo">创建示例</Button>
     </div>
     <div>
@@ -86,24 +86,24 @@ export default {
           key: 'action',
           width: 150,
           render: (h, { row }) => (
-              <div class="table_action">
-                <span
-                  class="clickable"
-                  onClick={() => {
-                    this.showEditDemo(row);
-                  }}
-                >
-                  编辑
-                </span>
-                <span
-                  class="clickable--error"
-                  onClick={() => {
-                    this.confirmDeleteDemo(row.id);
-                  }}
-                >
-                  删除
-                </span>
-              </div>
+            <div class="table_action">
+              <span
+                class="clickable"
+                onClick={() => {
+                  this.showEditDemo(row);
+                }}
+              >
+                编辑
+              </span>
+              <span
+                class="clickable--error"
+                onClick={() => {
+                  this.confirmDeleteDemo(row.id);
+                }}
+              >
+                删除
+              </span>
+            </div>
           ),
         },
       ],

@@ -1,13 +1,13 @@
 <template>
   <div class="navbar">
     <Breadcrumb class="f-ib m-breadcrumb"></Breadcrumb>
-    <div class="f-ib m-info ">
+    <div class="f-ib m-info">
       <Dropdown trigger="click" placement="bottom-end">
         <div class="f-csp u-nav_user_name">
           <img class="avatar" :src="avatar + '&s=60'" width="30px" height="30px" />
           <Icon class="arrow" type="md-arrow-dropdown"></Icon>
         </div>
-        <DropdownMenu slot="list" style="min-width: 0;">
+        <DropdownMenu slot="list" style="min-width: 0">
           <DropdownItem class="c-error" @click.native="logout">注销</DropdownItem>
         </DropdownMenu>
       </Dropdown>
@@ -48,7 +48,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .navbar {
-    height: 100%;
+  height: 100%;
   background: #fff;
   border-bottom: 1px solid #e5e6eb;
 }
@@ -58,7 +58,7 @@ export default {
 }
 /*用户头像*/
 .m-info {
-  width:84px;
+  width: 84px;
   border-left: 1px solid #e5e6eb;
   line-height: 60px;
   float: right;
