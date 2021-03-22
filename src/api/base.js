@@ -1,7 +1,11 @@
 import * as axiosInstance from 'axios';
 import { Message, Modal } from 'view-design';
+import settings from '@/settings.js';
+
+const { VUE_APP_BASE_URL } = settings;
 
 const request = axiosInstance.create({
+  baseURL: VUE_APP_BASE_URL,
   // 统一设置超时时间
   timeout: 20000,
   // 返回数据类型

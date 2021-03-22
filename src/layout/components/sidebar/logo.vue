@@ -2,7 +2,10 @@
   <div class="sidebar-logo-container">
     <router-link class="sidebar-logo-link" to="/">
       <img v-if="logo" :src="logo" class="sidebar-logo" />
-      <h1 class="sidebar-title">vue-admin</h1>
+      <h1 class="sidebar-title">
+        <p>{{ $settings.VUE_APP_TITLE }}</p>
+        <p>{{ $settings.VUE_APP_SUB_TITLE }}</p>
+      </h1>
     </router-link>
   </div>
 </template>

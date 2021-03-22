@@ -1,11 +1,14 @@
 import { LoadingBar } from 'view-design';
 import router from '@/router/index';
 import store from '@/store/index';
+import getPageTitle from '@/utils/get-page-title.js';
 
 // main.js
 const WHITE_LIST = ['/login'];
 router.beforeEach((to, from, next) => {
   LoadingBar.start();
+  // set page title
+  document.title = getPageTitle(to.meta.title);
   if (WHITE_LIST.indexOf(to.path) !== -1) {
     // 白名单页面不需要登录
     next();
