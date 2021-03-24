@@ -9,7 +9,7 @@ export const constantRoutes = [
   {
     name: 'login',
     path: '/login',
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/pages/login/index.vue'),
     hidden: true,
   },
   {
@@ -20,7 +20,7 @@ export const constantRoutes = [
       {
         name: 'dashboard',
         path: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/pages/dashboard/index.vue'),
         meta: { title: '首页' },
       },
     ],
